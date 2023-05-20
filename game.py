@@ -47,11 +47,43 @@ class OthelloGame:
                 print(cell, end="    ")
             print("|\n     |                                           |")
         print("     +-------------------------------------------+")
+    def can_flip_pieces(self,row,col,direction):
+        piece_colour = self.board[row][col]
+        if direction == "down" and self.board[row][col+1] != piece_colour:
+            for i in range(col, 8):
+                if self.board[row][col+1] != piece_colour:
+                    valid_move = False
+                else:
+                    valid_move = True
+            if valid_move == True:
+                takenpieces = [[row,j] for j in range(col,i)]
+                for r , c in takenpieces:
+                    self.board[r][c] = self.player
+        elif direction == "up" and self.board[row][col+1] != piece_colour:
+            for i in range(0,col):
+                if self.board[row][col-1] != piece_colour:
+                    valid_move = False
+                else:
+                    valid_move = True
+            if valid_move == True:
+                takenpieces = [[row,j] for j in range(col,i)]
+                for r , c in takenpieces:
+                    self.board[r][c] = self.player
+        
+
+
+            
+
+                
+                    
+            
+
 
     def make_move(self, row, col):
-        # Implement the logic for making a move
-        # Update the board and switch players accordingly
-        pass
+        if self.board[row][col] != "-":
+            print(f"There is already a piece there belonging to {self.board[row][col]}.\nInvalid move.")
+            return False
+    
 
     def is_game_over(self):
         # Implement the logic to check if the game is over
