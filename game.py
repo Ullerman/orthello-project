@@ -22,32 +22,69 @@ These are the basic rules for making moves in Othello. Implementing these rules 
 
 
 
-Board = [
-# 1   2   3   4   5   6   7   8
-["-","-","-","-","-","-","-","-",], #1
-["-","-","-","-","-","-","-","-",], #2
-["-","-","-","-","-","-","-","-",], #3
-["-","-","-","B","W","-","-","-",], #4
-["-","-","-","W","B","-","-","-",], #5
-["-","-","-","-","-","-","-","-",], #6
-["-","-","-","-","-","-","-","-",], #7
-["-","-","-","-","-","-","-","-",]  #8
-]
+class OthelloGame:
+    def __init__(self):
+        self.board = [
+            ["-", "-", "-", "-", "-", "-", "-", "-"],
+            ["-", "-", "-", "-", "-", "-", "-", "-"],
+            ["-", "-", "-", "-", "-", "-", "-", "-"],
+            ["-", "-", "-", "B", "W", "-", "-", "-"],
+            ["-", "-", "-", "W", "B", "-", "-", "-"],
+            ["-", "-", "-", "-", "-", "-", "-", "-"],
+            ["-", "-", "-", "-", "-", "-", "-", "-"],
+            ["-", "-", "-", "-", "-", "-", "-", "-"]
+        ]
+        self.player = 'B'
 
-def display_board():
-    # Print column labels
-    print("         ", end="")
-    for col in range(1,9):
-        print(col, end="    ")
-    print("\n     +-------------------------------------------+")
+    def display_board(self):
+        print("         ", end="")
+        for col in range(1, 9):
+            print(col, end="    ")
+        print("\n     +-------------------------------------------+")
+        for row in range(len(self.board)):
+            print(row + 1, end="    |   ")
+            for cell in self.board[row]:
+                print(cell, end="    ")
+            print("|\n     |                                           |")
+        print("     +-------------------------------------------+")
 
-    # Print rows and cells
-    for row in range(len(Board)):
-        print(row+1, end="    |   ")
-        for cell in Board[row]:
-            print(cell, end="    ")
-        print("|\n     |                                           |")
-    print("     +-------------------------------------------+")
+    def make_move(self, row, col):
+        # Implement the logic for making a move
+        # Update the board and switch players accordingly
+        pass
 
+    def is_game_over(self):
+        # Implement the logic to check if the game is over
+        pass
 
-display_board()
+    def calculate_winner(self):
+        # Implement the logic to calculate the winner of the game
+        pass
+
+    def play(self):
+        game_over = False
+
+        while not game_over:
+            self.display_board()
+
+            row = int(input("Enter the row number: "))
+            col = int(input("Enter the column number: "))
+
+            self.make_move(row - 1, col - 1)
+
+            if self.is_game_over():
+                game_over = True
+                self.display_board()
+                print("Game over!")
+                winner = self.calculate_winner()
+                if winner == 'B':
+                    print("Black (B) wins!")
+                elif winner == 'W':
+                    print("White (W) wins!")
+                else:
+                    print("It's a draw!")
+
+# Create an instance of the OthelloGame class
+game = OthelloGame()
+# Start the game
+game.play()
