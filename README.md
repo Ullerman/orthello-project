@@ -1,2 +1,2 @@
-# ben-project
+# Orthello Project
 orthello game
