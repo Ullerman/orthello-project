@@ -59,6 +59,10 @@ class OthelloGame:
                 takenpieces = [[row,j] for j in range(col,i)]
                 for r , c in takenpieces:
                     self.board[r][c] = self.player
+                return True
+            else:
+                return False
+
         elif direction == "up" and self.board[row][col+1] != piece_colour:
             for i in range(0,col):
                 if self.board[row][col-1] != piece_colour:
@@ -69,7 +73,8 @@ class OthelloGame:
                 takenpieces = [[row,j] for j in range(col,i)]
                 for r , c in takenpieces:
                     self.board[r][c] = self.player
-        
+            else:
+                return False
 
 
             
